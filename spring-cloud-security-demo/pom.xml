@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.3</version>
+		<version>3.2.1</version>
 	</parent>
 
 	<groupId>com.wen</groupId>
@@ -15,7 +15,6 @@
 	<description>spring-cloud-security-demo</description>
 
 	<modules>
-		<module>oauth2-authorization-server/authorization-server</module>
 		<module>oauth2-authorization-server/authentication-server</module>
 		<module>feign-api</module>
 		<module>sysadmin</module>
@@ -80,6 +79,13 @@
 			<scope>provided</scope>
 		</dependency>
 
+		<!-- junit -->
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
 	</dependencies>
 
 </project>

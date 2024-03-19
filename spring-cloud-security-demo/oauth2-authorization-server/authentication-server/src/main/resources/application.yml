@@ -2,13 +2,11 @@ server:
   port: 7050
 spring:
   application:
-    name: authentication-server
+    name: authenticationserver
   cloud:
     nacos:
       discovery:
         server-addr:  http://127.0.0.1:8850 # nacos服务器的地址
-logging:
-  level:
-    com:
-      wen:
-        orderserver: DEBUG
+    openfeign:
+      httpclient:
+        enabled: true

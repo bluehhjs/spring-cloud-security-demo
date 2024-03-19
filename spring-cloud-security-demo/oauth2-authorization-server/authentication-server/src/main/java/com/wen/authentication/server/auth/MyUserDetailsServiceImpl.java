@@ -44,7 +44,7 @@ public class MyUserDetailsServiceImpl implements UserDetailsService {
         SysUser sysUser = null;
 
         // 如果是用户名登录
-        sysUser = sysAdminClient.finUserById(userId);
+        sysUser = sysAdminClient.findUserById(userId);
 
         //判断该账号是否存在
         if(sysUser == null) {

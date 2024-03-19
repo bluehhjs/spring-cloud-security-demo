@@ -28,7 +28,9 @@ public class SysUserController {
      */
     @GetMapping(value = "/finUserById/{userId}")
     public SysUser finUserById(@PathVariable("userId") String userId){
-        return sysUserMapper.findUserById(userId);
+        SysUser user = sysUserMapper.findUserById(userId);
+        System.out.println("调用了!!!!!!!!!!!!!返回："+user);
+        return user;
     }
 
 

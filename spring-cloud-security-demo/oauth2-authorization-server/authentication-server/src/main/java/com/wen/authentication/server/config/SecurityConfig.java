@@ -3,6 +3,7 @@ package com.wen.authentication.server.config;
 import com.wen.authentication.server.auth.MyPasswordEncoder;
 import com.wen.authentication.server.auth.MyUserDetailsServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,6 +25,7 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.authentication.www.DigestAuthenticationEntryPoint;
 import org.springframework.security.web.authentication.www.DigestAuthenticationFilter;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import javax.sql.DataSource;
 
@@ -56,14 +58,24 @@ public class SecurityConfig {
                     .passwordParameter("password");
         };
 
+
         // 配置请求授权规则，任何请求都需要认证通过
-        http.authorizeHttpRequests(authorizeRequests -> authorizeRequests.anyRequest().authenticated())
+        http.authorizeHttpRequests(authorizeRequests -> authorizeRequests
+                        .requestMatchers(new AntPathRequestMatcher("/login","GET")).permitAll()//访问/login地址时，不做认证授权验证
+                        .requestMatchers(new AntPathRequestMatcher("/userLogin","POST")).permitAll()//访问/userLogin地址时，不做认证授权验证
+                        .requestMatchers(new AntPathRequestMatcher("/login/sms","GET")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/js/**")).hasAuthority("user:manage")//设置请求地址是/js/**时，可以随意访问
+                        .requestMatchers(new AntPathRequestMatcher("/**")).hasRole("超级管理员")
+                        .anyRequest().authenticated())
                 .formLogin(formLoginConfigurerCustomizer);
+
+
         return http.build();
 
     }
 
     @Bean
+    @ConditionalOnClass
     public AuthenticationManager authenticationManager(
             UserDetailsService userDetailsService,
             PasswordEncoder passwordEncoder) {
