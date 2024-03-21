@@ -16,6 +16,7 @@
 
 	<modules>
 		<module>oauth2-authorization-server/authentication-server</module>
+		<module>oauth2-authorization-server/authorization-server</module>
 		<module>feign-api</module>
 		<module>sysadmin</module>
 	</modules>

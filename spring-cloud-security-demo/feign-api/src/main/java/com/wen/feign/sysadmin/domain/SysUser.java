@@ -11,7 +11,7 @@ public class SysUser {
     private String password;
     private int age;
     private String gender;
-    private String phone;
+    private String mobile;
     private String email;
     private LocalDateTime lastLoginTime;//上一次登录时间
     private int enabled;//账号是否可用。默认为1（可用）

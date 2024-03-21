@@ -1,4 +1,4 @@
-package com.wen.authentication.server.controller;
+package com.wen.authorization.server.controller;
 
 import com.wen.feign.sysadmin.clients.SysAdminClient;
 import com.wen.feign.sysadmin.domain.SysUser;
@@ -22,7 +22,7 @@ public class FeignTest {
 
     @GetMapping(value="/user/{id}")
     public SysUser getUser(@PathVariable String id){
-        return sysAdminClient.findUserById(id);
+        return sysAdminClient.findUserByUserId(id);
     }
 
 }

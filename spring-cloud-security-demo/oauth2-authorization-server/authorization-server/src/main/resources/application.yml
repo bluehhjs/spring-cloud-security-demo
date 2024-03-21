@@ -1,0 +1,17 @@
+server:
+  port: 7051
+spring:
+  application:
+    name: authorizationserver
+  cloud:
+    nacos:
+      discovery:
+        server-addr:  http://127.0.0.1:8850 # nacos服务器的地址
+    openfeign:
+      httpclient:
+        enabled: true
+logging:
+  level:
+    com:
+      wen:
+        orderserver: DEBUG

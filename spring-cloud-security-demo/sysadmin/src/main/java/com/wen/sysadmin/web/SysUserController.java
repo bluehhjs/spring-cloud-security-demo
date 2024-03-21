@@ -28,10 +28,12 @@ public class SysUserController {
      */
     @GetMapping(value = "/finUserById/{userId}")
     public SysUser finUserById(@PathVariable("userId") String userId){
-        SysUser user = sysUserMapper.findUserById(userId);
-        System.out.println("调用了!!!!!!!!!!!!!返回："+user);
-        return user;
+        return sysUserMapper.findUserById(userId);
     }
 
+    @GetMapping(value = "/findUserByMobile/{mobile}")
+    public SysUser findUserByMobile(@PathVariable("mobile") String mobile){
+        return sysUserMapper.findUserByMobile(mobile);
+    }
 
 }

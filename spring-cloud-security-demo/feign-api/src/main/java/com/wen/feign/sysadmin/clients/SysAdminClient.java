@@ -13,11 +13,14 @@ import java.util.List;
 public interface SysAdminClient {
 
     @GetMapping(value = "/api/finUserById/{userId}")
-    SysUser findUserById(@PathVariable("userId") String userId);
+    SysUser findUserByUserId(@PathVariable("userId") String userId);
 
     @GetMapping(value = "/api//findRolesByUserId/{userId}")
     List<SysRole> findRolesByUserId(@PathVariable("userId") String userId);
 
     @GetMapping(value="/api/findPermissionByUserId/{userId}")
     List<SysPermission> findPermissionByUserId(@PathVariable String userId);
+
+    @GetMapping(value = "/api/findUserByMobile/{mobile}")
+    SysUser findUserByMobile(@PathVariable("mobile") String mobile);
 }
